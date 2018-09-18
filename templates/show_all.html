@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+
+
+  <style>
+.blocks {
+    background-color: tomato;
+    color: white;
+    padding: 10px;
+   
+   height:80px
+}
+
+@media  only screen and (min-device-width: 768px) 
+		{
+  		  .form-container {
+  		    padding: 5%;
+      			background: #4aefe1;
+  			    border: 9px solid #ff6666;            
+   			   max-width: 520px;
+			  
+    			  margin: auto;
+ 		   }
+
+	}
+
+a{
+font-size: 12px;
+}
+body{
+	background-image: url("{{url_for('static', filename='bloggers.jpg')}}");
+	
+		}
+
+
+
+.navbar {
+  overflow: hidden;
+  background-color: blue;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; 
+}
+.topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+}
+
+
+</style></head>
+   <body><br><br><br><br>
+
+  <div class="navbar">
+      <h3><a href = "{{url_for('new') }}">Add Blog
+         </a>
+    <a href="{{url_for('adminpg')}}">Admin</a>
+   <a href="{{url_for('reportblog')}}">Report Blog</a>
+  <div class="topright"><a href="{{url_for('logout')}}">Log Out</a></div>
+	</h3>
+</div>
+      <div class="form-container">
+   
+      
+	<center>
+         <h2>Bloggers</a></h2>
+        
+	</center>
+      
+      
+      <hr/>
+     
+   
+	
+		
+
+	<form method="POST" action="/searchmethod"><center>
+	<label for="title"></label>
+ <input id="title" type="text" name="searchtext" placeholder="Search the Blog" required maxlength="100" size="40">
+</center><br><center> <button  type="submit" >Search</button>
+  </center>             
+	</form>
+
+      <table>
+         
+         
+         <tbody>
+            {% for result in result %}
+               <tr>
+                  <td><b><h2 class="blocks"><a href="/idfetch/{{result.blog_id}}">{{result.blog_id}} &nbsp;{{ result.title}}</a></b><br>
+                 	       by {{ result.name}} From
+               	      {{ result.city}}
+                 	      <br>
+	Posted On
+	    {{result.datetime}}</td></h2>
+               </tr>
+	
+            {% endfor %}
+         </tbody>
+	
+	
+      </table>
+     </div> 
+
+	
+   </body>
+</html>

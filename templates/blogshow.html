@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+
+  <style>
+
+.blocks {
+    background-color: tomato;
+    color: white;
+    padding: 10px;
+   height:70px;
+ font
+}
+
+@media  only screen and (min-device-width: 768px) 
+		{
+  		  .form-container {
+  		    padding: 5%;
+      			background: #4aefe1;
+  			    border: 9px solid #ff6666;            
+   			   max-width: 520px;
+			  
+    			  margin: auto;
+ 		   }
+
+	}
+
+a{
+font-size: 12px;
+}
+
+body{
+	background-image: url("{{url_for('static', filename='bloggers.jpg')}}");
+	
+    }
+
+.navbar {
+  overflow: hidden;
+  background-color: blue;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; 
+}
+.topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+}
+
+
+
+</style></head>
+   <body><br><br><br>
+	<div class="navbar">
+      <h3><a href = "{{url_for('new') }}">Add Blog
+         </a>
+    <a href="{{url_for('adminpg')}}">Admin</a>
+   <a href="{{url_for('reportblog')}}">Report Blog</a>
+   <a href="{{url_for('show_all')}}">Blogs</a>
+<div class="topright"><a href="{{url_for('logout')}}">Log Out</a></div>
+	
+	</h3>
+</div>
+	 
+      <div class="form-container">
+   
+      <h3>
+	<center>
+         <h3><b><a href = "{{ url_for('show_all') }}">Bloggers</a></b></h3>
+        
+	</center>
+      </h3>
+      
+      <hr/>
+      
+		
+      <table>
+
+ 
+ 
+	
+         <tbody>
+	
+            {% for blogger in rows %}
+               <tr>
+	<h2>{{blogger.message}}</h2>
+                  <td><b><h5 class="blocks">{{ blogger.title}}</a></b><br>
+                 	       by {{ blogger.name}} From
+               	      {{ blogger.city}}
+                 	      <br>
+	Posted On
+	    {{blogger.datetime}}</td></h5>
+	<a href="/imagedis/{{id}}">Image</a>
+	
+               </tr>
+	
+            {% endfor %}
+	
+	
+         </tbody>
+       	
+      </table>
+     </div> 
+   </body>
+</html>

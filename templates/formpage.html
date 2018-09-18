@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+        
+	
+   
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" >
+       
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     
+
+	<style>
+	   hr {
+		height: 1px;
+		color: #123455;
+		background-color: #4dff4d;
+		border: none;
+	}
+
+	@media  only screen and (min-device-width: 768px) 
+		{
+  		  .form-container {
+  		    padding: 5%;
+      			background:  #4aefe1;
+  			    border: 9px solid #ff6666;            
+   			   max-width: 520px;
+    			  margin: auto;
+ 		   }
+
+	}
+
+	h1, p 
+		{
+		  text-align: center;
+		}
+
+	input, textarea , button
+		{
+ 		 width: 100%;
+		}    
+	textarea
+		{
+		  height: 200px;
+		}
+		
+	body{
+	background-image: url("{{url_for('static', filename='bloggers.jpg')}}");
+	
+		}
+
+	.navbar {
+  overflow: hidden;
+  background-color: blue;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; 
+}
+.topright {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+}
+	</style>
+  
+
+      </head>
+   
+     <body >
+     <br><br><br><br>
+
+  <div class="navbar">
+      <h3><a href = "{{url_for('new') }}">Add Blog
+         </a>
+    <a href="{{url_for('adminpg')}}">Admin</a>
+   <a href="{{url_for('reportblog')}}">Report Blog</a>
+<a href="{{url_for('show_all')}}">Blogs</a>
+<div class="topright"><a href="{{url_for('logout')}}">Log Out</a></div>
+	</h3>
+	</h3>
+</div>
+     <div class="container">
+        
+	    <div class="form-container">
+         
+	
+		<center>
+		       <h1>
+                    Create Your Blog               </h1>
+        
+				
+				<hr>
+				  {%- for category, message in get_flashed_messages(with_categories = true) %}
+     				    <div class = "alert alert-danger">
+        				    {{ message }}
+ 				        </div>
+  				    {%- endfor %}			   		
+				
+				
+			        <form method="post"  id="reused_form" action="{{ request.path }}" enctype="multipart/form-data">
+                    
+				<label for="name">Your Name:</label>
+ <input id="name" type="text" name="name" placeholder="Name" required maxlength="50" size="40">
+     
+               				<label for="email">Email Address:</label>
+ <input id="email" type="email" name="email" placeholder="Email" required maxlength="50" size="40">
+             
+
+				
+				<label for="city">City</label>
+ 
+        				 <input id="city" type = "text" name = "city" placeholder = "city" required  size="40"/><br>
+  		 	                   <label for = "title">Title For Your Blog</label>
+                                                                            <input id="title" type="text" name = "title" placeholder = "Title" required size="40"/><br>
+                                                                            
+
+				<label for="message">Message:</label>
+<textarea id="message" name="message" rows="10" maxlength="6000" required size="40" cols="40"/></textarea>
+              
+    			                  <label for="inputFile">Image Attachement</label>
+				<input type="file" name="imgfile">
+    				
+				<br> <button class="button-primary" type="submit" >Post</button>
+               
+			         </form>
+       
+				</center>
+                   
+   </div>
+ 
+	   </body>
+</html>
